@@ -14,7 +14,7 @@ class CapstoneTestCase(unittest.TestCase):
         self.app = create_app()
         self.client = self.app.test_client
         self.database_name = "postgres"
-        self.database_path = "postgresql://{}:{}@{}/{}".format('postgres', 'Shosho11', 'localhost', self.database_name)
+        self.database_path = "postgresql://{}:{}@{}/{}".format('postgres', 'Shosho11', 'localhost:5432', self.database_name)
         self.new_movie = {
             'releaseDate': '14430709',
         }
