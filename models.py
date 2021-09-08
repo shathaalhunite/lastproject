@@ -1,10 +1,10 @@
-import os
-from sqlalchemy import Column, String, Integer, create_engine
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy import create_engine, Integer
 import json
+from collections import namedtuple
 
 database_name = "postgres"
-database_path = "postgres://{}:{}@{}/{}".format('postgres','Shosho11','localhost:5432', database_name)
+database_path = "postgresql://{}:{}@{}/{}".format('postgres','Aa123456','localhost:5432', database_name)
 
 db = SQLAlchemy()
 
@@ -19,62 +19,63 @@ def setup_db(app, database_path=database_path):
     db.init_app(app)
     db.create_all()
 
-'''
-Movies
+class Movies(db.Model):
+    __tablename__ = 'Movie'
+    id = db.Column(Integer,primary_key=True,nullable=False, unique=True, autoincrement=True)
+    releaseDate = db.Column(db.String) 
+ 
+    def format(self):
+      return {
+          'id': self.id,
+          'releaseDate': self.releaseDate,
+    }  
+    def delete(self):
+        db.session.delete(self)
+        db.session.commit()
+    
+    def insert(self):
+        db.session.add(self)
+        db.session.commit()
 
-'''
-class Movies(db.Model):  
-     __tablename__ = 'questions'
-     id = Column(Integer, primary_key=True)
-     title = Column(String)
-     relase_date = Column(String)
+    def long(self):
+       return {
+           'id': self.id,
+           'releaseDate': json.loads(self.releaseDate)
+        }
+    def update(self):
+        db.session.commit()
 
 
-def __init__(self, question, answer):
-    self.title = question
-    self.relase_date = answer
-   
+class Actors(db.Model):
+    __tablename__ = 'Actor'
+    id = db.Column(db.Integer,primary_key=True,nullable=False, unique=True, autoincrement=True)
+    name = db.Column(db.String)
+    age  = db.Column(db.String)
+    gender = db.Column(db.String(120))
 
-def insert(self):
-    db.session.add(self)
-    db.session.commit()
-  
-def update(self):
-    db.session.commit()
+    def format(self):
+      return {
+          'id': self.id,
+          'name': self.name,
+          'age': self.age,
+          'gender': self.gender,
 
-def delete(self):
-    db.session.delete(self)
-    db.session.commit()
+    }  
+    def long(self):
+       return {
+           'id': self.id,
+           'name': json.loads(self.name),
+           'age': json.loads(self.age),
+           'gender': json.loads(self.gender),
+        }
+    def delete(self):
+        db.session.delete(self)
+        db.session.commit()
 
-def format(self):
-    return {
-      'id': self.id,
-      'title': self.title,
-      'relasedate': self.relase_date,
+    def update(self):
+        db.session.commit()
 
-    }
+    def insert(self):
+        db.session.add(self)
+        db.session.commit()
 
-'''
-Actors
-
-'''
-class Actors(db.Model):  
-     __tablename__ = 'categories'
-
-     id = Column(Integer, primary_key=True)
-     name = Column(String)
-     age = Column(Integer)
-     gender = Column(String)
-
-def __init__(self, name ,age , gender):
-    self.name = name
-    self.age = age
-    self.gender = gender
-
-def format(self):
-    return {
-      'id': self.id,
-      'name': self.name,
-      'age': self.age,
-      'gender': self.gender,
-    }
