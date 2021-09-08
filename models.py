@@ -4,7 +4,7 @@ import json
 from collections import namedtuple
 
 database_name = "postgres"
-database_path = "postgresql://{}:{}@{}/{}".format('postgres','Shosho11','127.0.0.1:5432', database_name)
+database_path = "postgresql://{}:{}@{}/{}".format('postgres','Shosho11','localhost:5432', database_name)
 
 db = SQLAlchemy()
 
