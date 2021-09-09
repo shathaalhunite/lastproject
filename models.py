@@ -3,8 +3,8 @@ from sqlalchemy import create_engine, Integer
 import json
 from collections import namedtuple
 
-database_name = "d6cmhnoaos9b2r"
-database_path = "postgresql://{}:{}@{}/{}".format('nlvupvrifzdcoz','4ae6bcce2eb595915c6d77d290c4f209fb43aac05dbb2b946c399ec34d0b4be3','localhost:5432', database_name)
+database_name = "postgres"
+database_path = "postgresql://{}:{}@{}/{}".format('postgres','Shosho11','localhost:5432', database_name)
 
 db = SQLAlchemy()
 
