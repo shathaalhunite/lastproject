@@ -13,8 +13,8 @@ class CapstoneTestCase(unittest.TestCase):
         """Define test variables and initialize app."""
         self.app = create_app()
         self.client = self.app.test_client
-        self.database_name = "postgres"
-        self.database_path = "postgresql://{}:{}@{}/{}".format('postgres', 'Shosho11', 'localhost:5432', self.database_name)
+        self.database_name = "d6cmhnoaos9b2r"
+        self.database_path = "postgresql://{}:{}@{}/{}".format('nlvupvrifzdcoz','4ae6bcce2eb595915c6d77d290c4f209fb43aac05dbb2b946c399ec34d0b4be3','localhost:5432', self.database_name)
         self.new_movie = {
             'releaseDate': '14430709',
         }
